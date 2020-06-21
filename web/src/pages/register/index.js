@@ -28,7 +28,7 @@ const Register = ({
 }) => {
     return (
         <div id="register-container">
-            <form onSubmit={(e) => {e.preventDefault(); onRegisterClicked(email, password)}}>
+            <form onSubmit={(e) => {e.preventDefault(); onRegisterClicked()}}>
                 <label>Email</label>
                 <input type="email" onChange={onEmailChanged} value={email}></input>
                 <label>Password</label>
@@ -70,7 +70,7 @@ const mapDispatchToProps = dispatch => ({
     onConfirmPasswordChanged: (e) => dispatch(onConfirmPasswordChanged(e.target.value)),
     onTermChanged: (e) => dispatch(onTermChanged(e.target.checked)),
     onPromotionChanged: (e) => dispatch(onPromotionChanged(e.target.checked)),
-    onRegisterClicked: (email, password) => dispatch(onRegisterClicked(email, password))
+    onRegisterClicked: () => dispatch(onRegisterClicked())
 })
   
 export default connect(mapStateToProps, mapDispatchToProps)(Register)

@@ -57,7 +57,7 @@ def login():
             cur.execute("SELECT * FROM users WHERE email=%s AND password=crypt(%s, password);", [request_body['email'], request_body['password']])
             result = cur.fetchone()
             if not result:
-                return "Email not exist", 400
+                return "Email not exist or Password incorrect", 400
             return generate_jwt(request_body['email']), 200
         except Exception as e:
             cnx.rollback()

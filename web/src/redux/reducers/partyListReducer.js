@@ -1,4 +1,6 @@
-  export default (state = { 
+import { JOIN_CLICK } from '../actions/partyListAction'
+
+export default (state = { 
     parties: [
         {
             partyId: 1,
@@ -17,6 +19,10 @@
     ]
 }, action) => {
     switch (action.type) {
+        case JOIN_CLICK:
+            return {
+                ...state
+            }
         default:
             return state
     }

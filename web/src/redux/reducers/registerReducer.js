@@ -48,7 +48,7 @@ export default (state = {
             return {
                 ...state,
                 isPasswordMatch: true,
-                isEmailExist: true
+                isEmailExist: {}
             }
         case PASSWORD_NOT_MATCH:
             return {

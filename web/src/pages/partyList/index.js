@@ -5,8 +5,9 @@ import { onJoinClicked } from '../../redux/actions/partyListAction'
 import React from 'react';
 
 const PartyList = ({
+    onJoinClicked,
     partyList, 
-    members
+    members,
 }) => {
     return (
         <div id="party-list-container">
@@ -15,7 +16,7 @@ const PartyList = ({
                     <div className="party-container">
                         {party.partyName}
                         Members: {party.members}/{party.maximumMembers}
-                        <button onClick={onJoinClicked()}>Join this party</button>
+                        <button onClick={onJoinClicked(party.partyId)}>Join this party</button>
                     </div>
                 )
             })}
@@ -30,7 +31,7 @@ const mapStateToProps = state => ({
 })
   
 const mapDispatchToProps = dispatch => ({
-    onJoinClicked: () => dispatch(onJoinClicked())
+    onJoinClicked: (partyId) => dispatch(onJoinClicked(partyId))
 })
   
 export default connect(mapStateToProps, mapDispatchToProps)(PartyList)

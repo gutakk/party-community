@@ -46,7 +46,7 @@ export const onPromotionChanged = (checked) => dispatch => {
     })
 }
 
-export const onRegisterClicked = (x, y) => (dispatch, getState) => {
+export const onRegisterClicked = () => (dispatch, getState) => {
     const email = getState().register.email
     const password = getState().register.password
     const confirmPassword = getState().register.confirmPassword
@@ -60,6 +60,7 @@ export const onRegisterClicked = (x, y) => (dispatch, getState) => {
             if(result.statusCode === 201) {
                 localStorage.setItem("token", result.message)
                 dispatch({ type: REGISTERED })
+                window.location.href = "/"
             }
             else {
                 dispatch({ 

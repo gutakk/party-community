@@ -20,6 +20,29 @@ async function register(email, password) {
     }
 }
 
+async function login(email, password) {
+    const url = "http://localhost:5000/login"
+    const body = {
+        email: email,
+        password: password
+    }
+    const config = {
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(body),
+        method: "POST"
+    }
+    const response = await fetch(url, config)
+    const statusCode = response.status
+    const message = await response.text()
+    return {
+        message: message,
+        statusCode: statusCode
+    }
+}
+
 export {
-    register
+    register,
+    login
 }
