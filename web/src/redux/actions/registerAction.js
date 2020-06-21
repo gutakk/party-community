@@ -8,6 +8,7 @@ export const PROMOTION_CHECK = 'register/PROMOTION_CHECK'
 export const REGISTER_CLICK = 'register/REGISTER_CLICK'
 export const REGISTERING = 'register/REGISTERING'
 export const REGISTERED = 'register/REGISTERED'
+export const EMAIL_EXIST = 'register/EMAIL_EXIST'
 export const PASSWORD_NOT_MATCH = 'register/PASSWORD_NOT_MATCH'
 
 export const onEmailChanged = (email) => dispatch => {
@@ -56,8 +57,13 @@ export const onRegisterClicked = (x, y) => (dispatch, getState) => {
     }
     else {
         register(email, password).then((result => {
-            localStorage.setItem("token", result.token)
-            dispatch({ type: REGISTERED })
+            if(result.statusCode === 201) {
+                localStorage.setItem("token", result.message)
+                dispatch({ type: REGISTERED })
+            }
+            else {
+                dispatch({ type: EMAIL_EXIST })
+            }
         }))
     }
 }

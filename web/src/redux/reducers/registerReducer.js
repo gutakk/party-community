@@ -5,7 +5,8 @@ import {
     TERM_CHECK, 
     PROMOTION_CHECK, 
     REGISTER_CLICK, 
-    PASSWORD_NOT_MATCH 
+    PASSWORD_NOT_MATCH,
+    EMAIL_EXIST
 } from '../actions/registerAction'
   
 export default (state = { 
@@ -14,7 +15,8 @@ export default (state = {
     confirmPassword: "",
     termCheck: false,
     promotionCheck: false,
-    isPasswordMatch: true
+    isPasswordMatch: true,
+    isEmailExist: false
 }, action) => {
     switch (action.type) {
         case EMAIL_CHANGE:
@@ -45,12 +47,18 @@ export default (state = {
         case REGISTER_CLICK:
             return {
                 ...state,
-                isPasswordMatch: true
+                isPasswordMatch: true,
+                isEmailExist: true
             }
         case PASSWORD_NOT_MATCH:
             return {
                 ...state,
                 isPasswordMatch: false
+            }
+        case EMAIL_EXIST:
+            return {
+                ...state,
+                isEmailExist: true
             }
         default:
             return state

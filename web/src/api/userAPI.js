@@ -13,9 +13,9 @@ async function register(email, password) {
     }
     const response = await fetch(url, config)
     const statusCode = response.status
-    const token = await response.text()
+    const message = await response.text()
     return {
-        token: token,
+        message: message,
         statusCode: statusCode
     }
 }
