@@ -12,4 +12,4 @@ COPY /backend /usr/src
 
 EXPOSE 5000
 
-CMD ["python3 /usr/src/app.py"]
+CMD ["python3", "/usr/src/app.py"]

@@ -12,6 +12,8 @@ services:
       dockerfile: ./docker/backend/Dockerfile
     volumes:
       - "./backend:/usr/src"
+    ports:
+      - "5000:5000"
     depends_on:
       - scb10x-test-db
     networks:
