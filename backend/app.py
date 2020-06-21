@@ -73,7 +73,16 @@ def party():
         cnx = init_cnx()
         cur = cnx.cursor()
         try:
-            cur.execute("SELECT id, name, members, max_members FROM parties;")
+            cur.execute("""
+                WITH count_party_joining AS (
+                    SELECT party_id, count(*) as members 
+                    FROM party_joining group by party_id
+                ) 
+                SELECT p.id, p.name, COALESCE(cpj.members, 0), p.max_members 
+                FROM parties p 
+                LEFT JOIN count_party_joining cpj 
+                ON p.id = cpj.party_id;
+            """)
             result = cur.fetchall()
             app.logger.info(result)
             return jsonify(result), 200
@@ -94,6 +103,27 @@ def party():
             """, [request_body['party_name'], request_body['max_members']])
             cnx.commit()
             return "Party create successfully", 201
+        except Exception as e:
+            cnx.rollback()
+            raise(e)
+        finally:
+            cur.close()
+            cnx.close()
+
+
+@app.route('/join-party/<party_id>', methods=['POST'])
+def join_party(party_id):
+    if request.method == 'POST':
+        request_body = request.json
+        cnx = init_cnx()
+        cur = cnx.cursor()
+        try:
+            cur.execute("""
+                INSERT INTO party_joining (party_id, user_email)
+                VALUES (%s, %s)
+            """, [party_id, request_body['user_email']])
+            cnx.commit()
+            return "Join party successfully", 200
         except Exception as e:
             cnx.rollback()
             raise(e)

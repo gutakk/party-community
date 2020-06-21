@@ -1,4 +1,4 @@
-import { fetchParties } from '../../api/partyAPI'
+import { fetchParties, joinParty } from '../../api/partyAPI'
 
 
 export const FETCHING_PARTIES = 'partyList/FETCHING_PARTIES'
@@ -31,6 +31,8 @@ export const onJoinClicked = (partyId) => dispatch => {
         dispatch({ 
             type: JOIN_CLICK
         })
+        joinParty(partyId, token)
+        window.location.href = "/"
     }
     else {
         window.location.href = '/login'

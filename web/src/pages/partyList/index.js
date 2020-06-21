@@ -10,7 +10,7 @@ class PartyList extends Component {
     }
 
     render() {
-        const {onJoinClicked, partyList, fetchPartiesAction} = this.props
+        const {onJoinClicked, partyList} = this.props
         return (
             <div id="party-list-container">
                 <a href="/create-party">Create Party</a>

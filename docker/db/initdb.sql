@@ -14,3 +14,9 @@ CREATE TABLE parties (
     max_members INT NOT NULL,
     PRIMARY KEY(id)
 );
+
+CREATE TABLE party_joining (
+    party_id TEXT NOT NULL REFERENCES parties(id),
+    user_email TEXT NOT NULL REFERENCES users(email),
+    PRIMARY KEY(party_id, user_email)
+);

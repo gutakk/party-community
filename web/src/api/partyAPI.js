@@ -1,3 +1,5 @@
+import jwt from 'jwt-decode'
+
 async function createParty(partyName, maxMembers) {
     const url = "http://localhost:5000/party"
     const body = {
@@ -27,7 +29,31 @@ async function fetchParties() {
     return data
 }
 
+async function joinParty(partyId, token) {
+    const url = "http://localhost:5000/join-party/" + partyId
+    const body = {
+       user_email: jwt(token)['email']
+    }
+    console.log(body)
+    const config = {
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(body),
+        method: "POST"
+    }
+    const response = await fetch(url, config)
+    const statusCode = response.status
+    const message = await response.text()
+    return {
+        message: message,
+        statusCode: statusCode
+    }
+}
+
+
 export {
     createParty,
-    fetchParties
+    fetchParties,
+    joinParty
 }
