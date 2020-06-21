@@ -1,9 +1,9 @@
-import { EMAIL_CHANGE, PASSWORD_CHANGE, CONFIRM_PASSWORD_CHANGE, TERM_CHECK, PROMOTION_CHECK } from '../actions/registerAction'
+import { EMAIL_CHANGE, PASSWORD_CHANGE, CONFIRM_PASSWORD_CHANGE, TERM_CHECK, PROMOTION_CHECK, REGISTER_CLICK } from '../actions/registerAction'
   
 export default (state = { 
-    email: null,
-    password: null,
-    confirmPassword: null,
+    email: "",
+    password: "",
+    confirmPassword: "",
     termCheck: false,
     promotionCheck: false
 }, action) => {
@@ -32,6 +32,10 @@ export default (state = {
             return {
                 ...state,
                 promotionCheck: action.payload
+            }
+        case REGISTER_CLICK:
+            return {
+                ...state
             }
         default:
             return state

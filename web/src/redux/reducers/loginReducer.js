@@ -1,8 +1,8 @@
 import { EMAIL_CHANGE, PASSWORD_CHANGE } from '../actions/loginAction'
   
 export default (state = { 
-    email: null,
-    password: null
+    email: "",
+    password: ""
 }, action) => {
     switch (action.type) {
         case EMAIL_CHANGE:

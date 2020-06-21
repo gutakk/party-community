@@ -1,6 +1,13 @@
 import './style.scss'
 import { connect } from 'react-redux'
-import { onEmailChanged, onPasswordChanged, onConfirmPasswordChanged, onTermChanged, onPromotionChanged } from '../../redux/actions/registerAction'
+import { 
+    onEmailChanged, 
+    onPasswordChanged, 
+    onConfirmPasswordChanged, 
+    onTermChanged, 
+    onPromotionChanged, 
+    onRegisterClicked 
+} from '../../redux/actions/registerAction'
 
 import React from 'react';
 
@@ -10,29 +17,32 @@ const Register = ({
     onConfirmPasswordChanged,
     onTermChanged,
     onPromotionChanged,
+    onRegisterClicked,
     email, 
     password,
     confirmPassword,
     termChecked,
-    promotionChecked
+    promotionChecked,
 }) => {
     return (
         <div id="register-container">
-            <form>
+            <form onSubmit={(e) => {e.preventDefault(); onRegisterClicked(email, password)}}>
                 <label>Email</label>
-                <input type="email" onChange={onEmailChanged} value={email} required></input>
+                <input type="email" onChange={onEmailChanged} value={email}></input>
                 <label>Password</label>
-                <input type="password" onChange={onPasswordChanged} value={password} required></input>
+                <input type="password" onChange={onPasswordChanged} value={password}></input>
                 <label>Confirm Password</label>
-                <input type="password" onChange={onConfirmPasswordChanged} value={confirmPassword} required></input>
+                <input type="password" onChange={onConfirmPasswordChanged} value={confirmPassword}></input>
                 <input type="checkbox" onChange={onTermChanged}></input>
                 <label>I agree term and condition to use PartyHaan</label>
                 <input type="checkbox" onChange={onPromotionChanged}></input>
                 <label>I want to receive news and promotion from PartyHaan</label>
-                <button 
-                    type="submit" 
+                {/* <button
                     disabled={!termChecked || !promotionChecked || !email || !password || !confirmPassword}>
-                        Register
+                    Register
+                </button> */}
+                <button>
+                    Register
                 </button>
             </form>
         </div>
@@ -52,7 +62,8 @@ const mapDispatchToProps = dispatch => ({
     onPasswordChanged: (e) => dispatch(onPasswordChanged(e.target.value)),
     onConfirmPasswordChanged: (e) => dispatch(onConfirmPasswordChanged(e.target.value)),
     onTermChanged: (e) => dispatch(onTermChanged(e.target.checked)),
-    onPromotionChanged: (e) => dispatch(onPromotionChanged(e.target.checked))
+    onPromotionChanged: (e) => dispatch(onPromotionChanged(e.target.checked)),
+    onRegisterClicked: (email, password) => dispatch(onRegisterClicked(email, password))
 })
   
 export default connect(mapStateToProps, mapDispatchToProps)(Register)
