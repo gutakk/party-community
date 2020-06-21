@@ -1,20 +1,20 @@
-import { EMAIL_CHANGE, PASSWORD_CHANGE } from '../actions/loginAction'
+import { PARTY_NAME_CHANGE, PEOPLE_CHANGE } from '../actions/partyCreationAction'
   
 export default (state = { 
-    email: null,
-    password: null
+    partyName: null,
+    people: null
 }, action) => {
     switch (action.type) {
-        case EMAIL_CHANGE:
+        case PARTY_NAME_CHANGE:
             console.log(action)
             return {
                 ...state,
-                email: action.payload
+                partyName: action.payload
             }
-        case PASSWORD_CHANGE:
+        case PEOPLE_CHANGE:
             return {
                 ...state,
-                password: action.payload
+                people: action.payload
             }
         default:
             return state

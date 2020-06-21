@@ -5,7 +5,6 @@ export const TERM_CHECK = 'register/TERM_CHECK'
 export const PROMOTION_CHECK = 'register/PROMOTION_CHECK'
 
 export const onEmailChanged = (email) => dispatch => {
-    console.log(email)
     dispatch({ 
         type: EMAIL_CHANGE,
         payload: email

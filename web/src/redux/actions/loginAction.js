@@ -2,7 +2,6 @@ export const EMAIL_CHANGE = 'login/EMAIL_CHANGE'
 export const PASSWORD_CHANGE = 'login/PASSWORD_CHANGE'
 
 export const onEmailChanged = (email) => dispatch => {
-    console.log(email)
     dispatch({ 
         type: EMAIL_CHANGE,
         payload: email
