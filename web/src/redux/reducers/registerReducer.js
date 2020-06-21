@@ -9,7 +9,6 @@ export default (state = {
 }, action) => {
     switch (action.type) {
         case EMAIL_CHANGE:
-            console.log(action)
             return {
                 ...state,
                 email: action.payload

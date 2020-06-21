@@ -1,20 +1,19 @@
-import { PARTY_NAME_CHANGE, PEOPLE_CHANGE } from '../actions/partyCreationAction'
+import { PARTY_NAME_CHANGE, MEMBER_CHANGE } from '../actions/partyCreationAction'
   
 export default (state = { 
     partyName: null,
-    people: null
+    members: null
 }, action) => {
     switch (action.type) {
         case PARTY_NAME_CHANGE:
-            console.log(action)
             return {
                 ...state,
                 partyName: action.payload
             }
-        case PEOPLE_CHANGE:
+        case MEMBER_CHANGE:
             return {
                 ...state,
-                people: action.payload
+                members: action.payload
             }
         default:
             return state
