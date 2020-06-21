@@ -17,6 +17,7 @@ services:
       POSTGRES_PASSWORD: scb10x-test
       POSTGRES_DB: scb10x
       POSTGRES_HOST: scb10x-test-db
+      JWT_SECRET: scb10x-secret
     ports:
       - "5000:5000"
     depends_on:

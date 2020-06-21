@@ -1,6 +1,7 @@
 import os
 import time
 
+import jwt
 import psycopg2
 from flask import Flask, jsonify, request
 from flask_cors import CORS
@@ -21,15 +22,12 @@ def index():
     return 'Index Page'
 
 
-@app.route('/user', methods=['GET', 'POST'])
+@app.route('/user', methods=['POST'])
 def user():
-    if request.method == 'GET':
-        return 'hello world'
-    elif request.method == 'POST':
+    if request.method == 'POST':
         request_body = request.json
         cnx = init_cnx()
         cur = cnx.cursor()
-        app.logger.warning(request_body)
         try:
             cur.execute("SELECT * FROM users WHERE email=%s", [request_body['email']])
             result = cur.fetchone()
@@ -40,13 +38,36 @@ def user():
                 VALUES (%s, crypt(%s, gen_salt('bf')));
             """, [request_body['email'], request_body['password']])
             cnx.commit()
-            return "Register succesfully", 201
+            return generate_jwt(request_body['email']), 201
         except Exception as e:
             cnx.rollback()
             raise(e)
         finally:
             cur.close()
             cnx.close()
+
+
+@app.route('/login', methods=['POST'])
+def user():
+    if request.method == 'POST':
+        request_body = request.json
+        cnx = init_cnx()
+        cur = cnx.cursor()
+        try:
+            cur.execute("SELECT * FROM users WHERE email=%s AND password=crypt(%s, password);", [request_body['email'], request_body['password']])
+            result = cur.fetchone()
+            if not result:
+                return "Email not exist", 400
+            return generate_jwt(request_body['email']), 200
+        except Exception as e:
+            cnx.rollback()
+            raise(e)
+        finally:
+            cur.close()
+            cnx.close()
+
+def generate_jwt(email):
+    return jwt.encode({'email': email}, os.environ['JWT_SECRET'], algorithm='HS256')
 
 
 if __name__ == '__main__':
