@@ -10,7 +10,7 @@ class PartyList extends Component {
     }
 
     render() {
-        const {onJoinClicked, partyList} = this.props
+        const {onJoinClicked, partyList, joinedMsg, joinedFailedMsg} = this.props
         return (
             <div id="party-list-container">
                 <a href="/create-party">Create Party</a>
@@ -23,6 +23,7 @@ class PartyList extends Component {
                         </div>
                     )
                 })}
+                {joinedMsg && <div>{joinedMsg}</div>}
             </div>
         )
     }
@@ -30,7 +31,9 @@ class PartyList extends Component {
 
 
 const mapStateToProps = state => ({
-    partyList: state.partyList.parties
+    partyList: state.partyList.parties,
+    joinedMsg: state.partyList.joinedMsg,
+    joinedFailedMsg: state.partyList.joinedFailedMsg
 })
   
 const mapDispatchToProps = dispatch => ({

@@ -59,8 +59,10 @@ export const onRegisterClicked = () => (dispatch, getState) => {
         register(email, password).then((result => {
             if(result.statusCode === 201) {
                 localStorage.setItem("token", result.message)
-                dispatch({ type: REGISTERED })
-                window.location.href = "/"
+                dispatch({ 
+                    type: REGISTERED,
+                    payload: "Register successfully" 
+                })
             }
             else {
                 dispatch({ 

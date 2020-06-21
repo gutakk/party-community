@@ -6,7 +6,8 @@ import {
     PROMOTION_CHECK, 
     REGISTER_CLICK, 
     PASSWORD_NOT_MATCH,
-    EMAIL_EXIST
+    EMAIL_EXIST,
+    REGISTERED
 } from '../actions/registerAction'
   
 export default (state = { 
@@ -16,7 +17,8 @@ export default (state = {
     termCheck: false,
     promotionCheck: false,
     isPasswordMatch: true,
-    isEmailExist: {}
+    isEmailExist: {},
+    registerSuccessMsg: ""
 }, action) => {
     switch (action.type) {
         case EMAIL_CHANGE:
@@ -59,6 +61,11 @@ export default (state = {
             return {
                 ...state,
                 isEmailExist: {"isExist": true, "message": action.payload}
+            }
+        case REGISTERED:
+            return {
+                ...state,
+                registerSuccessMsg: action.payload
             }
         default:
             return state

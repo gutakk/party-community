@@ -24,7 +24,8 @@ const Register = ({
     termChecked,
     promotionChecked,
     isPasswordMatch,
-    isEmailExist
+    isEmailExist,
+    registerSuccessMsg
 }) => {
     return (
         <div id="register-container">
@@ -42,14 +43,12 @@ const Register = ({
 
                 { !isPasswordMatch && <p className="register-error-msg">Password not match</p>}
                 { isEmailExist.isExist && <p className="register-error-msg">{isEmailExist.message}</p>}
-                {/* <button
+                <button
                     disabled={!termChecked || !promotionChecked || !email || !password || !confirmPassword}>
-                    Register
-                </button> */}
-                <button>
                     Register
                 </button>
             </form>
+            {registerSuccessMsg && <div>{registerSuccessMsg}</div>}
         </div>
     )
 }
@@ -61,7 +60,8 @@ const mapStateToProps = state => ({
     termChecked: state.register.termCheck,
     promotionChecked: state.register.promotionCheck,
     isPasswordMatch: state.register.isPasswordMatch,
-    isEmailExist: state.register.isEmailExist
+    isEmailExist: state.register.isEmailExist,
+    registerSuccessMsg: state.register.registerSuccessMsg
 })
   
 const mapDispatchToProps = dispatch => ({
