@@ -1,7 +1,5 @@
 async function register(email, password) {
     const url = "http://localhost:5000/user"
-    console.log(email)
-    console.log(password)
     const body = {
         email: email,
         password: password
@@ -16,7 +14,12 @@ async function register(email, password) {
     const response = await fetch(url, config)
     const statusCode = response.status
     const message = await response.text()
-    return message, statusCode
+    console.log(statusCode)
+    console.log(message)
+    return {
+        message: message,
+        statusCode: statusCode
+    }
 }
 
 export {

@@ -23,6 +23,7 @@ const Register = ({
     confirmPassword,
     termChecked,
     promotionChecked,
+    isPasswordMatch,
 }) => {
     return (
         <div id="register-container">
@@ -37,6 +38,8 @@ const Register = ({
                 <label>I agree term and condition to use PartyHaan</label>
                 <input type="checkbox" onChange={onPromotionChanged}></input>
                 <label>I want to receive news and promotion from PartyHaan</label>
+
+                { !isPasswordMatch && <p className="register-error-msg">Password not match</p>}
                 {/* <button
                     disabled={!termChecked || !promotionChecked || !email || !password || !confirmPassword}>
                     Register
@@ -54,7 +57,8 @@ const mapStateToProps = state => ({
     password: state.register.password,
     confirmPassword: state.register.confirmPassword,
     termChecked: state.register.termCheck,
-    promotionChecked: state.register.promotionCheck
+    promotionChecked: state.register.promotionCheck,
+    isPasswordMatch: state.register.isPasswordMatch
 })
   
 const mapDispatchToProps = dispatch => ({

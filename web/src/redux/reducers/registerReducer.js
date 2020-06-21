@@ -1,11 +1,20 @@
-import { EMAIL_CHANGE, PASSWORD_CHANGE, CONFIRM_PASSWORD_CHANGE, TERM_CHECK, PROMOTION_CHECK, REGISTER_CLICK } from '../actions/registerAction'
+import { 
+    EMAIL_CHANGE, 
+    PASSWORD_CHANGE, 
+    CONFIRM_PASSWORD_CHANGE, 
+    TERM_CHECK, 
+    PROMOTION_CHECK, 
+    REGISTER_CLICK, 
+    PASSWORD_NOT_MATCH 
+} from '../actions/registerAction'
   
 export default (state = { 
     email: "",
     password: "",
     confirmPassword: "",
     termCheck: false,
-    promotionCheck: false
+    promotionCheck: false,
+    isPasswordMatch: true
 }, action) => {
     switch (action.type) {
         case EMAIL_CHANGE:
@@ -35,7 +44,13 @@ export default (state = {
             }
         case REGISTER_CLICK:
             return {
-                ...state
+                ...state,
+                isPasswordMatch: true
+            }
+        case PASSWORD_NOT_MATCH:
+            return {
+                ...state,
+                isPasswordMatch: false
             }
         default:
             return state

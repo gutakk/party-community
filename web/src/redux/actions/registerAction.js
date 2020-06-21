@@ -8,6 +8,7 @@ export const PROMOTION_CHECK = 'register/PROMOTION_CHECK'
 export const REGISTER_CLICK = 'register/REGISTER_CLICK'
 export const REGISTERING = 'register/REGISTERING'
 export const REGISTERED = 'register/REGISTERED'
+export const PASSWORD_NOT_MATCH = 'register/PASSWORD_NOT_MATCH'
 
 export const onEmailChanged = (email) => dispatch => {
     dispatch({ 
@@ -47,7 +48,15 @@ export const onPromotionChanged = (checked) => dispatch => {
 export const onRegisterClicked = (x, y) => (dispatch, getState) => {
     const email = getState().register.email
     const password = getState().register.password
+    const confirmPassword = getState().register.confirmPassword
     dispatch({ type: REGISTER_CLICK })
     dispatch({ type: REGISTERING })
-    register(email, password)
+    if(password !== confirmPassword) {
+        dispatch({ type: PASSWORD_NOT_MATCH })
+    }
+    else {
+        register(email, password).then((result => {
+            dispatch({ type: REGISTERED })
+        }))
+    }
 }
