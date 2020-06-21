@@ -16,7 +16,7 @@ export default (state = {
     termCheck: false,
     promotionCheck: false,
     isPasswordMatch: true,
-    isEmailExist: false
+    isEmailExist: {}
 }, action) => {
     switch (action.type) {
         case EMAIL_CHANGE:
@@ -58,7 +58,7 @@ export default (state = {
         case EMAIL_EXIST:
             return {
                 ...state,
-                isEmailExist: true
+                isEmailExist: {"isExist": true, "message": action.payload}
             }
         default:
             return state

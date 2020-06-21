@@ -41,7 +41,7 @@ const Register = ({
                 <label>I want to receive news and promotion from PartyHaan</label>
 
                 { !isPasswordMatch && <p className="register-error-msg">Password not match</p>}
-                { isEmailExist && <p className="register-error-msg">Email already exist</p>}
+                { isEmailExist.isExist && <p className="register-error-msg">{isEmailExist.message}</p>}
                 {/* <button
                     disabled={!termChecked || !promotionChecked || !email || !password || !confirmPassword}>
                     Register

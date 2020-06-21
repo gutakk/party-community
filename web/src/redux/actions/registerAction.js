@@ -62,7 +62,10 @@ export const onRegisterClicked = (x, y) => (dispatch, getState) => {
                 dispatch({ type: REGISTERED })
             }
             else {
-                dispatch({ type: EMAIL_EXIST })
+                dispatch({ 
+                    type: EMAIL_EXIST, 
+                    payload: result.message 
+                })
             }
         }))
     }
