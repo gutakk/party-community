@@ -1,16 +1,13 @@
-export const PARTY_NAME_CHANGE = 'partyCreation/PARTY_NAME_CHANGE'
-export const MEMBER_CHANGE = 'partyCreation/MEMBER_CHANGE'
+export const JOIN_CLICK = 'partyList/JOIN_CLICK'
 
-export const onPartyNameChanged = (partyName) => dispatch => {
-    dispatch({ 
-        type: PARTY_NAME_CHANGE,
-        payload: partyName
-    })
-}
-
-export const onMemberChanged = (members) => dispatch => {
-    dispatch({
-        type: MEMBER_CHANGE,
-        payload: members
-    })
+export const onJoinClicked = () => dispatch => {
+    const token = localStorage.getItem('token')
+    if(token) {
+        dispatch({ 
+            type: JOIN_CLICK
+        })
+    }
+    else {
+        window.location.href = '/login'
+    }
 }

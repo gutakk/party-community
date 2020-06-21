@@ -1,6 +1,6 @@
 import './style.scss'
 import { connect } from 'react-redux'
-import { onPartyNameChanged, onMemberChanged } from '../../redux/actions/partyListAction'
+import { onJoinClicked } from '../../redux/actions/partyListAction'
 
 import React from 'react';
 
@@ -15,7 +15,7 @@ const PartyList = ({
                     <div className="party-container">
                         {party.partyName}
                         Members: {party.members}/{party.maximumMembers}
-                        <button>Join this party</button>
+                        <button onClick={onJoinClicked()}>Join this party</button>
                     </div>
                 )
             })}
@@ -30,8 +30,7 @@ const mapStateToProps = state => ({
 })
   
 const mapDispatchToProps = dispatch => ({
-    onPartyNameChanged: (e) => dispatch(onPartyNameChanged(e.target.value)),
-    onMemberChanged: (e) => dispatch(onMemberChanged(e.target.value))
+    onJoinClicked: () => dispatch(onJoinClicked())
 })
   
 export default connect(mapStateToProps, mapDispatchToProps)(PartyList)
