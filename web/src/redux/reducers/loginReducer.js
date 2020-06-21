@@ -1,9 +1,10 @@
-import { EMAIL_CHANGE, PASSWORD_CHANGE, EMAIL_NOT_EXIST, LOGIN_CLICK } from '../actions/loginAction'
+import { EMAIL_CHANGE, PASSWORD_CHANGE, EMAIL_NOT_EXIST, LOGIN_CLICK , LOGIN_FAILED} from '../actions/loginAction'
   
 export default (state = { 
     email: "",
     password: "",
-    isEmailExist: {}
+    isEmailExist: {},
+    loginFailedMsg: ""
 }, action) => {
     switch (action.type) {
         case EMAIL_CHANGE:
@@ -25,6 +26,11 @@ export default (state = {
             return {
                 ...state,
                 isEmailExist: {}
+            }
+        case LOGIN_FAILED:
+            return {
+                ...state,
+                loginFailedMsg: action.payload
             }
         default:
             return state

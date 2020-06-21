@@ -23,7 +23,7 @@ class PartyList extends Component {
                         </div>
                     )
                 })}
-                {joinedMsg && <div>{joinedMsg}</div>}
+                {joinedMsg && <div className="modal">{joinedMsg}</div>}
             </div>
         )
     }

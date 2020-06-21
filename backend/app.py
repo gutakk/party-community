@@ -57,7 +57,7 @@ def login():
             cur.execute("SELECT * FROM users WHERE email=%s AND password=crypt(%s, password);", [request_body['email'], request_body['password']])
             result = cur.fetchone()
             if not result:
-                return "Email not exist or Password incorrect", 400
+                return "Email or Password incorrect", 400
             return generate_jwt(request_body['email']), 200
         except Exception as e:
             cnx.rollback()
@@ -118,6 +118,10 @@ def join_party(party_id):
         cnx = init_cnx()
         cur = cnx.cursor()
         try:
+            cur.execute("SELECT * FROM party_joining WHERE party_id=%s AND email=%s", [party_id, request_body['email']])
+            result = cur.fetchone()
+            if result:
+                return "You already join this party", 400
             cur.execute("""
                 INSERT INTO party_joining (party_id, user_email)
                 VALUES (%s, %s)

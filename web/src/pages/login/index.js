@@ -10,7 +10,8 @@ const Login = ({
     onLoginClicked,
     email, 
     password,
-    isEmailExist
+    isEmailExist,
+    loginFailedMsg
 }) => {
     return (
         <div id="login-container">
@@ -26,6 +27,7 @@ const Login = ({
                 </button>
             </form>
             <p>No account yet? <a href="/register">Sign up for free!</a></p>
+            {loginFailedMsg && <div className="modal">{loginFailedMsg}</div>}
         </div>
     )
 }
@@ -33,7 +35,8 @@ const Login = ({
 const mapStateToProps = state => ({
     email: state.login.email,
     password: state.login.password,
-    isEmailExist: state.login.isEmailExist
+    isEmailExist: state.login.isEmailExist,
+    loginFailedMsg: state.login.loginFailedMsg
 })
   
 const mapDispatchToProps = dispatch => ({

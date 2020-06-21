@@ -20,14 +20,14 @@ const PartyCreation = ({
                 <input type="text" onChange={onPartyNameChanged} value={partyName} required></input>
                 <label>Members</label>
                 <input type="number" onChange={onMemberChanged} value={maxMembers} required></input>
-                {createFailedMsg && <p>{createFailedMsg}</p>}
-                {createSuccessMsg && <p>{createSuccessMsg}</p>}
                 <button 
                     type="submit" 
                     disabled={!partyName || !maxMembers}>
                         Create Party
                 </button>
             </form>
+            {createFailedMsg && <div className="modal">{createFailedMsg}</div>}
+            {createSuccessMsg && <div className="modal">{createSuccessMsg}</div>}
         </div>
     )
 }

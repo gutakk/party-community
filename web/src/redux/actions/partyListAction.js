@@ -40,6 +40,12 @@ export const onJoinClicked = (partyId) => dispatch => {
                     payload: result.message
                 })
             }
+            else if(result.statusCode === 400) {
+                dispatch({
+                    type: JOIN_FAILED,
+                    payload: result.message
+                })
+            }
             else {
                 dispatch({
                     type: JOIN_FAILED,

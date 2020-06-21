@@ -7,6 +7,7 @@ export const LOGIN_CLICK = 'login/LOGIN_CLICK'
 export const LOGGING_IN = 'login/LOGGING_IN'
 export const LOGGED_IN = 'login/LOGGED_IN'
 export const EMAIL_NOT_EXIST = 'login/EMAIL_NOT_EXIST'
+export const LOGIN_FAILED = 'login/LOGIN_FAILED'
 
 export const onEmailChanged = (email) => dispatch => {
     dispatch({ 
@@ -34,10 +35,16 @@ export const onLoginClicked = () => (dispatch, getState) => {
             dispatch({ type: LOGGED_IN })
             window.location.href = "/"
         }
-        else {
+        else if(result.statusCode === 400) {
             dispatch({ 
                 type: EMAIL_NOT_EXIST, 
                 payload: result.message 
+            })
+        }
+        else {
+            dispatch({
+                type: LOGIN_FAILED,
+                payload: "Something went wrong, please try again."
             })
         }
     }))

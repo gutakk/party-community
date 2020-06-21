@@ -10,6 +10,7 @@ export const REGISTERING = 'register/REGISTERING'
 export const REGISTERED = 'register/REGISTERED'
 export const EMAIL_EXIST = 'register/EMAIL_EXIST'
 export const PASSWORD_NOT_MATCH = 'register/PASSWORD_NOT_MATCH'
+export const REGISTER_FAILED = 'register/REGISTER_FAILED'
 
 export const onEmailChanged = (email) => dispatch => {
     dispatch({ 
@@ -64,10 +65,16 @@ export const onRegisterClicked = () => (dispatch, getState) => {
                     payload: "Register successfully" 
                 })
             }
-            else {
+            else if(result.statusCode === 400) {
                 dispatch({ 
                     type: EMAIL_EXIST, 
                     payload: result.message 
+                })
+            }
+            else {
+                dispatch({
+                    type: REGISTER_FAILED,
+                    payload: "Something went wrong, please try again."
                 })
             }
         }))
