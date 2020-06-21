@@ -1,0 +1,28 @@
+version: "3.3"
+networks:
+  scb10x-test-network:
+    external:
+      name: scb10x-test-network
+
+services:
+  scb10x-test-backend:
+    container_name: scb10x-test-backend
+    build:
+      context: ./
+      dockerfile: ./docker/backend/Dockerfile
+    volumes:
+      - "./backend:/usr/src"
+    depends_on:
+      - scb10x-test-db
+    networks:
+      - scb10x-test-network
+
+  scb10x-test-db:
+    container_name: scb10x-test-db
+    build:
+      context: ./
+      dockerfile: ./docker/db/Dockerfile
+    environment:
+      POSTGRES_PASSWORD: scb10x-test
+    networks:
+      - scb10x-test-network
