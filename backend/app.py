@@ -66,6 +66,41 @@ def login():
             cur.close()
             cnx.close()
 
+
+@app.route('/party', methods=['GET', 'POST'])
+def party():
+    if request.method == 'GET':
+        cnx = init_cnx()
+        cur = cnx.cursor()
+        try:
+            cur.execute("SELECT * FROM parties;")
+            result = cur.fetchall()
+            return result, 200
+        except Exception as e:
+            cnx.rollback()
+            raise(e)
+        finally:
+            cur.close()
+            cnx.close()
+    elif request.method == 'POST':
+        request_body = request.json
+        cnx = init_cnx()
+        cur = cnx.cursor()
+        try:
+            cur.execute("""
+                INSERT INTO parties (name, max_members)
+                VALUES (%s, %s)
+            """, [request_body['party_name'], request_body['max_members']])
+            cnx.commit()
+            return "Party create successfully", 201
+        except Exception as e:
+            cnx.rollback()
+            raise(e)
+        finally:
+            cur.close()
+            cnx.close()
+                        
+
 def generate_jwt(email):
     return jwt.encode({'email': email}, os.environ['JWT_SECRET'], algorithm='HS256')
 

@@ -1,25 +1,26 @@
 import './style.scss'
 import { connect } from 'react-redux'
-import { onPartyNameChanged, onMemberChanged } from '../../redux/actions/partyCreationAction'
+import { onPartyNameChanged, onMemberChanged, onCreatePartyClicked } from '../../redux/actions/partyCreationAction'
 
 import React from 'react';
 
 const PartyCreation = ({ 
     onPartyNameChanged, 
     onMemberChanged,
+    onCreatePartyClicked,
     partyName, 
-    members
+    maxMembers
 }) => {
     return (
         <div id="party-creation-container">
-            <form>
+            <form onSubmit={(e) => {e.preventDefault(); onCreatePartyClicked()}}>
                 <label>Party name</label>
                 <input type="text" onChange={onPartyNameChanged} value={partyName} required></input>
                 <label>Members</label>
-                <input type="number" onChange={onMemberChanged} value={members} required></input>
+                <input type="number" onChange={onMemberChanged} value={maxMembers} required></input>
                 <button 
                     type="submit" 
-                    disabled={!partyName || !members}>
+                    disabled={!partyName || !maxMembers}>
                         Create Party
                 </button>
             </form>
@@ -29,12 +30,13 @@ const PartyCreation = ({
 
 const mapStateToProps = state => ({
     partyName: state.partyCreation.partyName,
-    members: state.partyCreation.members
+    maxMembers: state.partyCreation.maxMembers
 })
   
 const mapDispatchToProps = dispatch => ({
     onPartyNameChanged: (e) => dispatch(onPartyNameChanged(e.target.value)),
-    onMemberChanged: (e) => dispatch(onMemberChanged(e.target.value))
+    onMemberChanged: (e) => dispatch(onMemberChanged(e.target.value)),
+    onCreatePartyClicked: () => dispatch(onCreatePartyClicked())
 })
   
 export default connect(mapStateToProps, mapDispatchToProps)(PartyCreation)

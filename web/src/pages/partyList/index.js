@@ -11,6 +11,7 @@ const PartyList = ({
 }) => {
     return (
         <div id="party-list-container">
+            <a href="/create-party">Create Party</a>
             {partyList.map(party => {
                 return (
                     <div className="party-container" key={party.partyId}>
