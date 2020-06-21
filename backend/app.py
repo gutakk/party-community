@@ -73,9 +73,10 @@ def party():
         cnx = init_cnx()
         cur = cnx.cursor()
         try:
-            cur.execute("SELECT * FROM parties;")
+            cur.execute("SELECT id, name, members, max_members FROM parties;")
             result = cur.fetchall()
-            return result, 200
+            app.logger.info(result)
+            return jsonify(result), 200
         except Exception as e:
             cnx.rollback()
             raise(e)

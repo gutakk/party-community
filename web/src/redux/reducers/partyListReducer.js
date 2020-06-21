@@ -1,27 +1,13 @@
-import { JOIN_CLICK } from '../actions/partyListAction'
+import { PARTY_FETCHED } from '../actions/partyListAction'
 
 export default (state = { 
-    parties: [
-        {
-            partyId: 1,
-            img: null,
-            partyName: "hello world",
-            members: 1,
-            maximumMembers: 5
-        },
-        {
-            partyId: 2,
-            img: null,
-            partyName: "qwerty",
-            members: 1,
-            maximumMembers: 5
-        }
-    ]
+    parties: []
 }, action) => {
     switch (action.type) {
-        case JOIN_CLICK:
+        case PARTY_FETCHED:
             return {
-                ...state
+                ...state,
+                parties: action.payload
             }
         default:
             return state

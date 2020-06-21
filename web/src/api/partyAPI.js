@@ -20,6 +20,14 @@ async function createParty(partyName, maxMembers) {
     }
 }
 
+async function fetchParties() {
+    const url = "http://localhost:5000/party"
+    const response = await fetch(url)
+    const data = await response.json()
+    return data
+}
+
 export {
     createParty,
+    fetchParties
 }

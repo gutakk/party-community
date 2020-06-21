@@ -4,6 +4,8 @@ export const PARTY_NAME_CHANGE = 'partyCreation/PARTY_NAME_CHANGE'
 export const MEMBER_CHANGE = 'partyCreation/MEMBER_CHANGE'
 export const CREATE_PARTY_CLICK = 'partyCreation/CREATE_PARTY_CLICK'
 export const CREATING_PARTY = 'partyCreation/CREATING_PARTY'
+export const PARTY_CREATED = 'partyCreation/PARTY_CREATED'
+export const PARTY_CREATE_FAILED = 'partyCreation/PARTY_CREATE_FAILED'
 
 export const onPartyNameChanged = (partyName) => dispatch => {
     dispatch({ 
@@ -25,5 +27,18 @@ export const onCreatePartyClicked = () => (dispatch, getState) => {
     dispatch({ type: CREATE_PARTY_CLICK })
     dispatch({ type: CREATING_PARTY })
 
-    createParty(partyName, maxMembers)
+    createParty(partyName, maxMembers).then((result => {
+        if(result.statusCode === 201) {
+            dispatch({
+                type: PARTY_CREATED,
+                payload: result.message
+            })
+        }
+        else {
+            dispatch({
+                type: PARTY_CREATE_FAILED,
+                payload: "Something went wrong, please try again."
+            })
+        }
+    }))
 }

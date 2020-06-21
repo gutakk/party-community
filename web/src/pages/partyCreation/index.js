@@ -9,7 +9,9 @@ const PartyCreation = ({
     onMemberChanged,
     onCreatePartyClicked,
     partyName, 
-    maxMembers
+    maxMembers,
+    createSuccessMsg,
+    createFailedMsg
 }) => {
     return (
         <div id="party-creation-container">
@@ -18,6 +20,8 @@ const PartyCreation = ({
                 <input type="text" onChange={onPartyNameChanged} value={partyName} required></input>
                 <label>Members</label>
                 <input type="number" onChange={onMemberChanged} value={maxMembers} required></input>
+                {createFailedMsg && <p>{createFailedMsg}</p>}
+                {createSuccessMsg && <p>{createSuccessMsg}</p>}
                 <button 
                     type="submit" 
                     disabled={!partyName || !maxMembers}>
@@ -30,7 +34,9 @@ const PartyCreation = ({
 
 const mapStateToProps = state => ({
     partyName: state.partyCreation.partyName,
-    maxMembers: state.partyCreation.maxMembers
+    maxMembers: state.partyCreation.maxMembers,
+    createSuccessMsg: state.partyCreation.createSuccessMsg,
+    createFailedMsg: state.partyCreation.createFailedMsg,
 })
   
 const mapDispatchToProps = dispatch => ({
