@@ -12,6 +12,11 @@ services:
       dockerfile: ./docker/backend/Dockerfile
     volumes:
       - "./backend:/usr/src"
+    environment:
+      POSTGRES_USER: scb10x
+      POSTGRES_PASSWORD: scb10x-test
+      POSTGRES_DB: scb10x
+      POSTGRES_HOST: scb10x-test-db
     ports:
       - "5000:5000"
     depends_on:
@@ -25,6 +30,10 @@ services:
       context: ./
       dockerfile: ./docker/db/Dockerfile
     environment:
+      POSTGRES_USER: scb10x
       POSTGRES_PASSWORD: scb10x-test
+      POSTGRES_DB: scb10x
+    ports:
+      - "5432:5432"
     networks:
       - scb10x-test-network
