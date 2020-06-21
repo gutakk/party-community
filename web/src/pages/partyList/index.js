@@ -13,10 +13,10 @@ const PartyList = ({
         <div id="party-list-container">
             {partyList.map(party => {
                 return (
-                    <div className="party-container">
+                    <div className="party-container" key={party.partyId}>
                         {party.partyName}
                         Members: {party.members}/{party.maximumMembers}
-                        <button onClick={onJoinClicked(party.partyId)}>Join this party</button>
+                        <button data-index={party.partyId} onClick={onJoinClicked}>Join this party</button>
                     </div>
                 )
             })}
@@ -31,7 +31,7 @@ const mapStateToProps = state => ({
 })
   
 const mapDispatchToProps = dispatch => ({
-    onJoinClicked: (partyId) => dispatch(onJoinClicked(partyId))
+    onJoinClicked: (e) => dispatch(onJoinClicked(e.target.getAttribute("data-index")))
 })
   
 export default connect(mapStateToProps, mapDispatchToProps)(PartyList)
