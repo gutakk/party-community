@@ -48,7 +48,7 @@ def user():
 
 
 @app.route('/login', methods=['POST'])
-def user():
+def login():
     if request.method == 'POST':
         request_body = request.json
         cnx = init_cnx()
