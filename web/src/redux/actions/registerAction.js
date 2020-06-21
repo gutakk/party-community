@@ -56,6 +56,7 @@ export const onRegisterClicked = (x, y) => (dispatch, getState) => {
     }
     else {
         register(email, password).then((result => {
+            localStorage.setItem("token", result.token)
             dispatch({ type: REGISTERED })
         }))
     }
