@@ -30,25 +30,35 @@ const Register = ({
 }) => {
     return (
         <div id="register-container">
-            <form onSubmit={(e) => {e.preventDefault(); onRegisterClicked()}}>
-                <label>Email</label>
-                <input type="email" onChange={onEmailChanged} value={email}></input>
-                <label>Password</label>
-                <input type="password" onChange={onPasswordChanged} value={password}></input>
-                <label>Confirm Password</label>
-                <input type="password" onChange={onConfirmPasswordChanged} value={confirmPassword}></input>
-                <input type="checkbox" onChange={onTermChanged}></input>
-                <label>I agree term and condition to use PartyHaan</label>
-                <input type="checkbox" onChange={onPromotionChanged}></input>
-                <label>I want to receive news and promotion from PartyHaan</label>
-
-                { !isPasswordMatch && <p className="register-error-msg">Password not match</p>}
-                { isEmailExist.isExist && <p className="register-error-msg">{isEmailExist.message}</p>}
-                <button
-                    disabled={!termChecked || !promotionChecked || !email || !password || !confirmPassword}>
-                    Register
-                </button>
-            </form>
+            <div id="register-form-container">
+                <h1>Registration</h1>
+                <form onSubmit={(e) => {e.preventDefault(); onRegisterClicked()}}>
+                    <label>Email</label>
+                    <input type="email" onChange={onEmailChanged} value={email}></input>
+                    <label>Password</label>
+                    <input type="password" onChange={onPasswordChanged} value={password}></input>
+                    <label>Confirm Password</label>
+                    <input type="password" onChange={onConfirmPasswordChanged} value={confirmPassword}></input>
+                    <div className="checkbox-container">
+                        <input type="checkbox" onChange={onTermChanged}></input>
+                        <label>I agree term and condition to use PartyHaan</label>
+                    </div>
+                    <div className="checkbox-container">
+                        <input type="checkbox" onChange={onPromotionChanged}></input>
+                        <label>I want to receive news and promotion from PartyHaan</label>
+                    </div>
+                    <div class="error-msg-container">
+                        { !isPasswordMatch && <p className="register-error-msg">Password not match</p>}
+                        { isEmailExist.isExist && <p className="register-error-msg">{isEmailExist.message}</p>}
+                    </div>
+                    <div className="button-container">
+                        <button
+                            disabled={!termChecked || !promotionChecked || !email || !password || !confirmPassword}>
+                            Register
+                        </button>
+                    </div>
+                </form>
+            </div>
             {registerSuccessMsg && <div className="modal">{registerSuccessMsg}</div>}
             {registerFailedMsg && <div className="modal">{registerFailedMsg}</div>}
         </div>
