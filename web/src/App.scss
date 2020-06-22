@@ -31,3 +31,31 @@ button {
     position: absolute;
     top: 0;
 }
+
+input[type="text"], input[type="number"], input[type="email"], input[type="password"] {
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+input[type="checkbox"] {
+    cursor: pointer;
+}
+
+form {
+    background-color: lightgrey;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    max-width: 500px;
+    box-sizing: border-box;
+}
+
+.error-msg-container {
+    color: red;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+.button-container {
+    text-align: center;
+}

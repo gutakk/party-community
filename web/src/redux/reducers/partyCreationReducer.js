@@ -1,4 +1,4 @@
-import { PARTY_NAME_CHANGE, MEMBER_CHANGE, PARTY_CREATED, PARTY_CREATE_FAILED } from '../actions/partyCreationAction'
+import { PARTY_NAME_CHANGE, MEMBER_CHANGE, PARTY_CREATED, PARTY_CREATE_FAILED, CLOSE_MODAL } from '../actions/partyCreationAction'
   
 export default (state = { 
     partyName: "",
@@ -26,6 +26,12 @@ export default (state = {
             return {
                 ...state,
                 createFailedMsg: action.payload
+            }
+        case CLOSE_MODAL:
+            return {
+                ...state,
+                createSuccessMsg: "",
+                createFailedMsg: ""
             }
         default:
             return state

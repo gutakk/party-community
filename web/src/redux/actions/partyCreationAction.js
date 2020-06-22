@@ -6,6 +6,8 @@ export const CREATE_PARTY_CLICK = 'partyCreation/CREATE_PARTY_CLICK'
 export const CREATING_PARTY = 'partyCreation/CREATING_PARTY'
 export const PARTY_CREATED = 'partyCreation/PARTY_CREATED'
 export const PARTY_CREATE_FAILED = 'partyCreation/PARTY_CREATE_FAILED'
+export const CLOSE_MODAL_AND_REDIRECT = 'partyCreation/CLOSE_MODAL_AND_REDIRECT'
+export const CLOSE_MODAL = 'partyCreation/CLOSE_MODAL'
 
 export const onPartyNameChanged = (partyName) => dispatch => {
     dispatch({ 
@@ -41,4 +43,13 @@ export const onCreatePartyClicked = () => (dispatch, getState) => {
             })
         }
     }))
+}
+
+export const closeModalAndRedirect = () => dispatch => {
+    dispatch({ type: CLOSE_MODAL_AND_REDIRECT })
+    window.location.href = "/"
+}
+
+export const closeModal = () => dispatch => {
+    dispatch({ type: CLOSE_MODAL })
 }
