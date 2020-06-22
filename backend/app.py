@@ -118,7 +118,7 @@ def join_party(party_id):
         cnx = init_cnx()
         cur = cnx.cursor()
         try:
-            cur.execute("SELECT * FROM party_joining WHERE party_id=%s AND email=%s", [party_id, request_body['email']])
+            cur.execute("SELECT * FROM party_joining WHERE party_id=%s AND user_email=%s", [party_id, request_body['user_email']])
             result = cur.fetchone()
             if result:
                 return "You already join this party", 400

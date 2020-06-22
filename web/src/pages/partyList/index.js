@@ -14,15 +14,22 @@ class PartyList extends Component {
         return (
             <div id="party-list-container">
                 <a href="/create-party">Create Party</a>
-                {partyList.map(party => {
-                    return (
-                        <div className="party-container" key={party.partyId}>
-                            {party.partyName}
-                            Members: {party.members}/{party.maximumMembers}
-                            <button data-index={party.partyId} onClick={onJoinClicked}>Join this party</button>
-                        </div>
-                    )
-                })}
+                <div id="party-container">
+                    {partyList.map(party => {
+                        return (
+                            <div className="party-item-container" key={party.partyId}>
+                                <img src={party.img}/>
+                                <div className="party-content-container">
+                                    <p className="party-name">{party.partyName}</p>
+                                    <p className="members">Members: {party.members}/{party.maximumMembers}</p>
+                                </div>
+                                <div className="button-container">
+                                    <button data-index={party.partyId} onClick={onJoinClicked}>Join this party</button>
+                                </div>
+                            </div>
+                        )
+                    })}
+                </div>
                 {joinedMsg && <div className="modal">{joinedMsg}</div>}
             </div>
         )

@@ -15,7 +15,7 @@ export const fetchPartiesAction = () => dispatch => {
         result.map((party => {
             partyList.push({
                 partyId: party[0],
-                img: "https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+                img: "https://i.ytimg.com/vi/GV3HUDMQ-F8/maxresdefault.jpg",
                 partyName: party[1],
                 members: party[2],
                 maximumMembers: party[3]
