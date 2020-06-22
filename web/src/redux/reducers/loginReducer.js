@@ -1,4 +1,4 @@
-import { EMAIL_CHANGE, PASSWORD_CHANGE, EMAIL_NOT_EXIST, LOGIN_CLICK , LOGIN_FAILED} from '../actions/loginAction'
+import { EMAIL_CHANGE, PASSWORD_CHANGE, EMAIL_NOT_EXIST, LOGIN_CLICK , LOGIN_FAILED, CLOSE_MODAL } from '../actions/loginAction'
   
 export default (state = { 
     email: "",
@@ -31,6 +31,11 @@ export default (state = {
             return {
                 ...state,
                 loginFailedMsg: action.payload
+            }
+        case CLOSE_MODAL:
+            return {
+                ...state,
+                loginFailedMsg: ""
             }
         default:
             return state

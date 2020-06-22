@@ -8,6 +8,7 @@ export const LOGGING_IN = 'login/LOGGING_IN'
 export const LOGGED_IN = 'login/LOGGED_IN'
 export const EMAIL_NOT_EXIST = 'login/EMAIL_NOT_EXIST'
 export const LOGIN_FAILED = 'login/LOGIN_FAILED'
+export const CLOSE_MODAL = 'login/CLOSE_MODAL'
 
 export const onEmailChanged = (email) => dispatch => {
     dispatch({ 
@@ -48,4 +49,8 @@ export const onLoginClicked = () => (dispatch, getState) => {
             })
         }
     }))
+}
+
+export const closeModal = () => dispatch => {
+    dispatch({ type: CLOSE_MODAL })
 }
