@@ -16,10 +16,10 @@ export const fetchPartiesAction = () => dispatch => {
         result.map((party => {
             partyList.push({
                 partyId: party[0],
-                img: "https://i.ytimg.com/vi/GV3HUDMQ-F8/maxresdefault.jpg",
                 partyName: party[1],
                 members: party[2],
-                maximumMembers: party[3]
+                maximumMembers: party[3],
+                img: party[4] ? party[4] : "https://png.pngtree.com/thumb_back/fw800/back_our/20190621/ourmid/pngtree-rose-texture-colorful-gradient-background-image_200635.jpg",
             })
         }))
         dispatch({

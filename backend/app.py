@@ -78,7 +78,7 @@ def party():
                     SELECT party_id, count(*) as members 
                     FROM party_joining group by party_id
                 ) 
-                SELECT p.id, p.name, COALESCE(cpj.members, 0), p.max_members 
+                SELECT p.id, p.name, COALESCE(cpj.members, 0), p.max_members, p.img
                 FROM parties p 
                 LEFT JOIN count_party_joining cpj 
                 ON p.id = cpj.party_id
@@ -99,9 +99,9 @@ def party():
         cur = cnx.cursor()
         try:
             cur.execute("""
-                INSERT INTO parties (name, max_members)
-                VALUES (%s, %s)
-            """, [request_body['party_name'], request_body['max_members']])
+                INSERT INTO parties (name, max_members, img)
+                VALUES (%s, %s, %s)
+            """, [request_body['party_name'], request_body['max_members'], request_body['img']])
             cnx.commit()
             return "Party create successfully", 201
         except Exception as e:

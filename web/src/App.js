@@ -12,7 +12,7 @@ function App() {
   return (
     <div className="App">
       <Switch>
-          <Route path='/register'><Register/></Route>
+          <Route path='/register'>{token ? <Redirect to=''/> : <Register/>}</Route>
           <Route path='/login'>{token ? <Redirect to=''/> : <Login/>}</Route>
           <Route path='/create-party'>{token ? <PartyCreation/> : <Redirect to='/login'/>}</Route>
           <Route path='/'><PartyList/></Route>

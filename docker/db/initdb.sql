@@ -12,6 +12,7 @@ CREATE TABLE parties (
     name TEXT NOT NULL,
     members INT NOT NULL DEFAULT 0,
     max_members INT NOT NULL,
+    img TEXT,
     PRIMARY KEY(id)
 );
 

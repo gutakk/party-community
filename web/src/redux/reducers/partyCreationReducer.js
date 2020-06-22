@@ -1,8 +1,9 @@
-import { PARTY_NAME_CHANGE, MEMBER_CHANGE, PARTY_CREATED, PARTY_CREATE_FAILED, CLOSE_MODAL } from '../actions/partyCreationAction'
+import { PARTY_NAME_CHANGE, MEMBER_CHANGE, PARTY_CREATED, PARTY_CREATE_FAILED, CLOSE_MODAL, UPLOAD_FILE } from '../actions/partyCreationAction'
   
 export default (state = { 
     partyName: "",
     maxMembers: "",
+    base64Img: "",
     createSuccessMsg: "",
     createFailedMsg: ""
 }, action) => {
@@ -32,6 +33,11 @@ export default (state = {
                 ...state,
                 createSuccessMsg: "",
                 createFailedMsg: ""
+            }
+        case UPLOAD_FILE:
+            return {
+                ...state,
+                base64Img: action.payload
             }
         default:
             return state

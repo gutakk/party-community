@@ -1,10 +1,11 @@
 import jwt from 'jwt-decode'
 
-async function createParty(partyName, maxMembers) {
+async function createParty(partyName, maxMembers, base64Img) {
     const url = "http://localhost:5000/party"
     const body = {
         party_name: partyName,
-        max_members: parseInt(maxMembers)
+        max_members: parseInt(maxMembers),
+        img: base64Img
     }
     const config = {
         headers: {

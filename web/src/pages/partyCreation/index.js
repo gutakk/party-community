@@ -1,6 +1,6 @@
 import './style.scss'
 import { connect } from 'react-redux'
-import { onPartyNameChanged, onMemberChanged, onCreatePartyClicked, closeModal, closeModalAndRedirect } from '../../redux/actions/partyCreationAction'
+import { onPartyNameChanged, onMemberChanged, onCreatePartyClicked, closeModal, closeModalAndRedirect, uploadImage } from '../../redux/actions/partyCreationAction'
 
 import React from 'react';
 
@@ -10,6 +10,7 @@ const PartyCreation = ({
     onCreatePartyClicked,
     closeModalAndRedirect,
     closeModal,
+    uploadImage,
     partyName, 
     maxMembers,
     createSuccessMsg,
@@ -24,6 +25,11 @@ const PartyCreation = ({
                     <input type="text" onChange={onPartyNameChanged} value={partyName} required></input>
                     <label>Members</label>
                     <input type="number" onChange={onMemberChanged} value={maxMembers} required></input>
+                    <label className="file-container">
+                        <i class="fa fa-cloud-upload"></i> Upload image
+                        <input type="file" onChange={(e) => uploadImage(e.target.files[0]) }/>
+                    </label>
+                    <br/>
                     <div className="button-container">
                         <button 
                             type="submit" 
@@ -64,7 +70,8 @@ const mapDispatchToProps = dispatch => ({
     onMemberChanged: (e) => dispatch(onMemberChanged(e.target.value)),
     onCreatePartyClicked: () => dispatch(onCreatePartyClicked()),
     closeModalAndRedirect: () => dispatch(closeModalAndRedirect()),
-    closeModal: () => dispatch(closeModal())
+    closeModal: () => dispatch(closeModal()),
+    uploadImage: (file) => dispatch(uploadImage(file))
 })
   
 export default connect(mapStateToProps, mapDispatchToProps)(PartyCreation)
