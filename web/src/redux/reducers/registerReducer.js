@@ -8,7 +8,8 @@ import {
     PASSWORD_NOT_MATCH,
     EMAIL_EXIST,
     REGISTERED,
-    REGISTER_FAILED
+    REGISTER_FAILED,
+    CLOSE_MODAL
 } from '../actions/registerAction'
   
 export default (state = { 
@@ -20,6 +21,7 @@ export default (state = {
     isPasswordMatch: true,
     isEmailExist: {},
     registerSuccessMsg: "",
+    registerFailedMsg: ""
 }, action) => {
     switch (action.type) {
         case EMAIL_CHANGE:
@@ -72,6 +74,12 @@ export default (state = {
             return {
                 ...state,
                 registerFailedMsg: action.payload
+            }
+        case CLOSE_MODAL:
+            return {
+                ...state,
+                registerFailedMsg: "",
+                registerSuccessMsg: ""
             }
         default:
             return state

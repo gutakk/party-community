@@ -11,6 +11,8 @@ export const REGISTERED = 'register/REGISTERED'
 export const EMAIL_EXIST = 'register/EMAIL_EXIST'
 export const PASSWORD_NOT_MATCH = 'register/PASSWORD_NOT_MATCH'
 export const REGISTER_FAILED = 'register/REGISTER_FAILED'
+export const CLOSE_MODAL_AND_REDIRECT = 'register/CLOSE_MODAL_AND_REDIRECT'
+export const CLOSE_MODAL = 'register/CLOSE_MODAL'
 
 export const onEmailChanged = (email) => dispatch => {
     dispatch({ 
@@ -79,4 +81,13 @@ export const onRegisterClicked = () => (dispatch, getState) => {
             }
         }))
     }
+}
+
+export const closeModalAndRedirect = () => dispatch => {
+    dispatch({ type: CLOSE_MODAL_AND_REDIRECT })
+    window.location.href = "/"
+}
+
+export const closeModal = () => dispatch => {
+    dispatch({ type: CLOSE_MODAL })
 }

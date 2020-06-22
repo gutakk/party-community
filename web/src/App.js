@@ -4,6 +4,7 @@ import Login from './pages/login'
 import PartyCreation from './pages/partyCreation'
 import PartyList from './pages/partyList'
 import Register from './pages/register'
+import './App.scss'
 
 
 function App() {

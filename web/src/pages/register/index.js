@@ -6,7 +6,9 @@ import {
     onConfirmPasswordChanged, 
     onTermChanged, 
     onPromotionChanged, 
-    onRegisterClicked 
+    onRegisterClicked,
+    closeModalAndRedirect,
+    closeModal
 } from '../../redux/actions/registerAction'
 
 import React from 'react';
@@ -18,6 +20,8 @@ const Register = ({
     onTermChanged,
     onPromotionChanged,
     onRegisterClicked,
+    closeModalAndRedirect,
+    closeModal,
     email, 
     password,
     confirmPassword,
@@ -59,8 +63,21 @@ const Register = ({
                     </div>
                 </form>
             </div>
-            {registerSuccessMsg && <div className="modal">{registerSuccessMsg}</div>}
-            {registerFailedMsg && <div className="modal">{registerFailedMsg}</div>}
+            {(registerSuccessMsg || registerFailedMsg) && <div className="overlay"></div>}
+            {
+                registerSuccessMsg && 
+                <div className="modal">
+                    <p>{registerSuccessMsg}</p>
+                    <button onClick={closeModalAndRedirect}>Confirm</button>
+                </div>
+            }
+            {
+                registerFailedMsg && 
+                <div className="modal">
+                    <p>{registerFailedMsg}</p>
+                    <button onClick={closeModal}>Confirm</button>
+                </div>
+            }
         </div>
     )
 }
@@ -83,7 +100,9 @@ const mapDispatchToProps = dispatch => ({
     onConfirmPasswordChanged: (e) => dispatch(onConfirmPasswordChanged(e.target.value)),
     onTermChanged: (e) => dispatch(onTermChanged(e.target.checked)),
     onPromotionChanged: (e) => dispatch(onPromotionChanged(e.target.checked)),
-    onRegisterClicked: () => dispatch(onRegisterClicked())
+    onRegisterClicked: () => dispatch(onRegisterClicked()),
+    closeModalAndRedirect: () => dispatch(closeModalAndRedirect()),
+    closeModal: () => dispatch(closeModal())
 })
   
 export default connect(mapStateToProps, mapDispatchToProps)(Register)
