@@ -20,3 +20,5 @@ CREATE TABLE party_joining (
     user_email TEXT NOT NULL REFERENCES users(email),
     PRIMARY KEY(party_id, user_email)
 );
+
+CREATE INDEX ON parties (name);

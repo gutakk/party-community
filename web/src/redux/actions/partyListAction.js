@@ -62,4 +62,5 @@ export const onJoinClicked = (partyId) => dispatch => {
 
 export const closeModal = () => dispatch => {
     dispatch({ type: CLOSE_MODAL })
+    window.location.href = "/"
 }

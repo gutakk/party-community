@@ -81,7 +81,8 @@ def party():
                 SELECT p.id, p.name, COALESCE(cpj.members, 0), p.max_members 
                 FROM parties p 
                 LEFT JOIN count_party_joining cpj 
-                ON p.id = cpj.party_id;
+                ON p.id = cpj.party_id
+                ORDER BY p.name ASC;
             """)
             result = cur.fetchall()
             app.logger.info(result)
