@@ -1,4 +1,4 @@
-import { PARTY_FETCHED, JOINED, JOIN_FAILED } from '../actions/partyListAction'
+import { PARTY_FETCHED, JOINED, JOIN_FAILED, CLOSE_MODAL } from '../actions/partyListAction'
 
 export default (state = { 
     parties: [],
@@ -20,6 +20,12 @@ export default (state = {
             return {
                 ...state,
                 joinedFailedMsg: action.payload
+            }
+        case CLOSE_MODAL:
+            return {
+                ...state,
+                joinedMsg: "",
+                joinedFailedMsg: ""
             }
         default:
             return state

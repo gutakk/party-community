@@ -7,6 +7,7 @@ export const JOIN_CLICK = 'partyList/JOIN_CLICK'
 export const JOINING = 'partyList/JOINING'
 export const JOINED = 'partyList/JOINED'
 export const JOIN_FAILED = 'partyList/JOIN_FAILED'
+export const CLOSE_MODAL = 'partyList/CLOSE_MODAL'
 
 export const fetchPartiesAction = () => dispatch => {
     dispatch({ type: FETCHING_PARTIES })
@@ -57,4 +58,8 @@ export const onJoinClicked = (partyId) => dispatch => {
     else {
         window.location.href = '/login'
     }
+}
+
+export const closeModal = () => dispatch => {
+    dispatch({ type: CLOSE_MODAL })
 }

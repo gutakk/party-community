@@ -1,6 +1,6 @@
 import './style.scss'
 import { connect } from 'react-redux'
-import { onJoinClicked, fetchPartiesAction } from '../../redux/actions/partyListAction'
+import { onJoinClicked, fetchPartiesAction, closeModal } from '../../redux/actions/partyListAction'
 
 import React, { Component } from 'react'
 
@@ -10,10 +10,12 @@ class PartyList extends Component {
     }
 
     render() {
-        const {onJoinClicked, partyList, joinedMsg, joinedFailedMsg} = this.props
+        const { onJoinClicked, closeModal, partyList, joinedMsg, joinedFailedMsg } = this.props
         return (
             <div id="party-list-container">
-                <a href="/create-party">Create Party</a>
+                <div className="menu-container">
+                    <a href="/create-party"><i class="fa fa-plus-circle"></i> Create Party</a>
+                </div>
                 <div id="party-container">
                     {partyList.map(party => {
                         return (
@@ -30,7 +32,21 @@ class PartyList extends Component {
                         )
                     })}
                 </div>
-                {joinedMsg && <div className="modal">{joinedMsg}</div>}
+                {(joinedMsg || joinedFailedMsg) && <div className="overlay"></div>}
+                {
+                    joinedMsg && 
+                    <div className="modal">
+                        <p>{joinedMsg}</p>
+                        <button onClick={closeModal}>Confirm</button>
+                    </div>
+                }
+                {
+                    joinedFailedMsg && 
+                    <div className="modal">
+                        <p>{joinedFailedMsg}</p>
+                        <button onClick={closeModal}>Confirm</button>
+                    </div>
+                }
             </div>
         )
     }
@@ -45,7 +61,8 @@ const mapStateToProps = state => ({
   
 const mapDispatchToProps = dispatch => ({
     onJoinClicked: (e) => dispatch(onJoinClicked(e.target.getAttribute("data-index"))),
-    fetchPartiesAction: () => dispatch(fetchPartiesAction())
+    fetchPartiesAction: () => dispatch(fetchPartiesAction()),
+    closeModal: () => dispatch(closeModal())
 })
   
 export default connect(mapStateToProps, mapDispatchToProps)(PartyList)
