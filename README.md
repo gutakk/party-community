@@ -1,7 +1,7 @@
 # SCB10X Software Engineer Test
 This project is created for apply job at SCB10X only.
 In this project I'd used tech stack as following
-- React and Redux Thunk for frontend
+- React, Redux Thunk and SCSS for frontend
 - Python (Flask, Psycopg) for backend
 - PostgreSQL for database
 - Docker for environment control
