@@ -21,19 +21,20 @@ const PartyCreation = ({
         <div id="party-creation-container">
             <div id="party-creation-form-container">
                 <h1>Create Party</h1>
-                <form onSubmit={(e) => {e.preventDefault(); onCreatePartyClicked()}}>
+                <form id="party-creation-form" onSubmit={(e) => {e.preventDefault(); onCreatePartyClicked()}}>
                     <label>Party name</label>
-                    <input type="text" onChange={onPartyNameChanged} value={partyName} required></input>
+                    <input id="party-creation-party-name-input" type="text" onChange={onPartyNameChanged} value={partyName} required></input>
                     <label>Members</label>
-                    <input type="number" onChange={onMemberChanged} value={maxMembers} required min={1}></input>
+                    <input id="party-creation-members-input" type="number" onChange={onMemberChanged} value={maxMembers} required min={1}></input>
                     <label className="file-container">
                         <i className="fa fa-cloud-upload"></i> Upload image
-                        <input type="file" onChange={(e) => uploadImage(e.target.files[0]) }/>
+                        <input id="party-creation-upload-file-input" type="file" onChange={(e) => uploadImage(e.target.files[0]) }/>
                     </label>
-                    <img src={base64Img}/>
+                    <img id="party-creation-img-preview" src={base64Img}/>
                     <br/>
                     <div className="button-container">
-                        <button 
+                        <button
+                            id="party-creation-button"
                             type="submit" 
                             disabled={!partyName || !maxMembers}>
                                 Create Party
@@ -44,16 +45,16 @@ const PartyCreation = ({
             {(createFailedMsg || createSuccessMsg) && <div className="overlay"></div>}
             {
                 createFailedMsg && 
-                <div className="modal">
-                    <p>{createFailedMsg}</p>
-                    <button onClick={closeModal}>Confirm</button>
+                <div id="party-creation-failed-modal" className="modal">
+                    <p id="party-creation-failed-msg">{createFailedMsg}</p>
+                    <button id="party-creation-failed-confirm-button" onClick={closeModal}>Confirm</button>
                 </div>
             }
             {
                 createSuccessMsg && 
-                <div className="modal">
-                    <p>{createSuccessMsg}</p>
-                    <button onClick={closeModalAndRedirect}>Confirm</button>
+                <div id="party-creation-success-modal" className="modal">
+                    <p id="party-creation-success-msg">{createSuccessMsg}</p>
+                    <button id="party-creation-success-confirm-button" onClick={closeModalAndRedirect}>Confirm</button>
                 </div>
             }
         </div>

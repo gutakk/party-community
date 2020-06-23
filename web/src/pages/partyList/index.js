@@ -14,19 +14,20 @@ class PartyList extends Component {
         return (
             <div id="party-list-container">
                 <div className="menu-container">
-                    <a href="/create-party"><i className="fa fa-plus-circle"></i> Create Party</a>
+                    <a id="create-party" href="/create-party"><i className="fa fa-plus-circle"></i> Create Party</a>
                 </div>
                 <div id="party-container">
                     {partyList.map(party => {
                         return (
                             <div className="party-item-container" key={party.partyId} id={party.partyId}>
-                                <img src={party.img}/>
+                                <img id={party.partyId + "-img"} src={party.img}/>
                                 <div className="party-content-container">
-                                    <p className="party-name">{party.partyName}</p>
-                                    <p className="members">Members: {party.members}/{party.maximumMembers}</p>
+                                    <p id={party.partyId + "-party-name"} className="party-name">{party.partyName}</p>
+                                    <p id={party.partyId + "-members"} className="members">Members: {party.members}/{party.maximumMembers}</p>
                                 </div>
                                 <div className="button-container">
-                                    <button 
+                                    <button
+                                        id={party.partyId + "-join-button"}
                                         data-index={party.partyId} 
                                         onClick={onJoinClicked}
                                         disabled={party.members >= party.maximumMembers}>
@@ -40,16 +41,16 @@ class PartyList extends Component {
                 {(joinedMsg || joinedFailedMsg) && <div className="overlay"></div>}
                 {
                     joinedMsg && 
-                    <div className="modal">
-                        <p>{joinedMsg}</p>
-                        <button onClick={closeModal}>Confirm</button>
+                    <div id="join-success-modal" className="modal">
+                        <p id="join-success-msg">{joinedMsg}</p>
+                        <button id="join-success-confirm-button" onClick={closeModal}>Confirm</button>
                     </div>
                 }
                 {
                     joinedFailedMsg && 
-                    <div className="modal">
-                        <p>{joinedFailedMsg}</p>
-                        <button onClick={closeModal}>Confirm</button>
+                    <div id="join-failed-modal" className="modal">
+                        <p id="join-failed-msg">{joinedFailedMsg}</p>
+                        <button id="join-failed-confirm-button" onClick={closeModal}>Confirm</button>
                     </div>
                 }
             </div>

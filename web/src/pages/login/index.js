@@ -18,29 +18,30 @@ const Login = ({
         <div id="login-container">
             <div id="login-form-container">
                 <h1>Login</h1>
-                <form onSubmit={(e) => {e.preventDefault(); onLoginClicked()}}>
+                <form id="login-form" onSubmit={(e) => {e.preventDefault(); onLoginClicked()}}>
                     <label>Email</label>
-                    <input type="email" onChange={onEmailChanged} value={email} required></input>
+                    <input id="login-email-input" type="email" onChange={onEmailChanged} value={email} required></input>
                     <label>Password</label>
-                    <input type="password" onChange={onPasswordChanged} value={password} required></input>
-                    <div className="error-msg-container">
+                    <input id="login-password-input" type="password" onChange={onPasswordChanged} value={password} required></input>
+                    <div id="login-error-msg" className="error-msg-container">
                         {!isEmailExist.isExist && <p className="login-error-msg">{isEmailExist.message}</p>}
                     </div>
                     <div className="button-container">
                         <button 
+                            id="login-button"
                             disabled={!email || !password}>
                                 Login
                         </button>
                     </div>
                 </form>
-                <p>No account yet? <a href="/register">Sign up for free!</a></p>
+                <p>No account yet? <a id="sign-up" href="/register">Sign up for free!</a></p>
             </div>
             {loginFailedMsg && <div className="overlay"></div>}
             {
                 loginFailedMsg && 
-                <div className="modal">
-                    <p>{loginFailedMsg}</p>
-                    <button onClick={closeModal}>Confirm</button>
+                <div id="login-failed-modal" className="modal">
+                    <p id="login-failed-msg">{loginFailedMsg}</p>
+                    <button id="login-failed-confirm-button" onClick={closeModal}>Confirm</button>
                 </div>
             }
         </div>

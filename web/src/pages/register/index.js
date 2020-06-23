@@ -36,27 +36,28 @@ const Register = ({
         <div id="register-container">
             <div id="register-form-container">
                 <h1>Registration</h1>
-                <form onSubmit={(e) => {e.preventDefault(); onRegisterClicked()}}>
+                <form id="register-form" onSubmit={(e) => {e.preventDefault(); onRegisterClicked()}}>
                     <label>Email</label>
-                    <input type="email" onChange={onEmailChanged} value={email}></input>
+                    <input id="register-email-input" type="email" onChange={onEmailChanged} value={email}></input>
                     <label>Password</label>
-                    <input type="password" onChange={onPasswordChanged} value={password}></input>
+                    <input id="register-password-input" type="password" onChange={onPasswordChanged} value={password}></input>
                     <label>Confirm Password</label>
-                    <input type="password" onChange={onConfirmPasswordChanged} value={confirmPassword}></input>
+                    <input id="register-confirm-password-input" type="password" onChange={onConfirmPasswordChanged} value={confirmPassword}></input>
                     <div className="checkbox-container">
-                        <input type="checkbox" onChange={onTermChanged}></input>
+                        <input id="register-term-checkbox-input" type="checkbox" onChange={onTermChanged}></input>
                         <label>I agree term and condition to use PartyHaan</label>
                     </div>
                     <div className="checkbox-container">
-                        <input type="checkbox" onChange={onPromotionChanged}></input>
+                        <input id="register-news-checkbox-input" type="checkbox" onChange={onPromotionChanged}></input>
                         <label>I want to receive news and promotion from PartyHaan</label>
                     </div>
-                    <div className="error-msg-container">
-                        { !isPasswordMatch && <p className="register-error-msg">Password not match</p>}
-                        { isEmailExist.isExist && <p className="register-error-msg">{isEmailExist.message}</p>}
+                    <div id="register-error-msg-container" className="error-msg-container">
+                        { !isPasswordMatch && <p id="register-password-not-match" className="register-error-msg">Password not match</p>}
+                        { isEmailExist.isExist && <p id="register-email-exist" className="register-error-msg">{isEmailExist.message}</p>}
                     </div>
                     <div className="button-container">
                         <button
+                            id="register-button"
                             disabled={!termChecked || !promotionChecked || !email || !password || !confirmPassword}>
                             Register
                         </button>
@@ -66,16 +67,16 @@ const Register = ({
             {(registerSuccessMsg || registerFailedMsg) && <div className="overlay"></div>}
             {
                 registerSuccessMsg && 
-                <div className="modal">
-                    <p>{registerSuccessMsg}</p>
-                    <button onClick={closeModalAndRedirect}>Confirm</button>
+                <div id="register-success-modal" className="modal">
+                    <p id="register-success-msg">{registerSuccessMsg}</p>
+                    <button id="register-success-confirm-button" onClick={closeModalAndRedirect}>Confirm</button>
                 </div>
             }
             {
                 registerFailedMsg && 
-                <div className="modal">
-                    <p>{registerFailedMsg}</p>
-                    <button onClick={closeModal}>Confirm</button>
+                <div id="register-failed-modal" className="modal">
+                    <p id="register-failed-msg">{registerFailedMsg}</p>
+                    <button id="register-failed-confirm-button" onClick={closeModal}>Confirm</button>
                 </div>
             }
         </div>
