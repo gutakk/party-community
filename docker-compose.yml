@@ -11,7 +11,7 @@ services:
       context: ./
       dockerfile: ./docker/web/Dockerfile
     ports:
-      - "3001:3000"
+      - "3000:3000"
     networks:
       - scb10x-test-network
     stdin_open: true
