@@ -1,7 +1,8 @@
 import jwt from 'jwt-decode'
 
 async function createParty(partyName, maxMembers, base64Img) {
-    const url = "http://localhost:5000/party"
+    const hostname = window.location.hostname
+    const url = "http://" + hostname + ":5000/party"
     const body = {
         party_name: partyName,
         max_members: parseInt(maxMembers),
@@ -24,14 +25,16 @@ async function createParty(partyName, maxMembers, base64Img) {
 }
 
 async function fetchParties() {
-    const url = "http://localhost:5000/party"
+    const hostname = window.location.hostname
+    const url = "http://" + hostname + ":5000/party"
     const response = await fetch(url)
     const data = await response.json()
     return data
 }
 
 async function joinParty(partyId, token) {
-    const url = "http://localhost:5000/join-party/" + partyId
+    const hostname = window.location.hostname
+    const url = "http://" + hostname + ":5000/join-party/" + partyId
     const body = {
        user_email: jwt(token)['email']
     }

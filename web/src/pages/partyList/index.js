@@ -19,14 +19,19 @@ class PartyList extends Component {
                 <div id="party-container">
                     {partyList.map(party => {
                         return (
-                            <div className="party-item-container" key={party.partyId}>
+                            <div className="party-item-container" key={party.partyId} id={party.partyId}>
                                 <img src={party.img}/>
                                 <div className="party-content-container">
                                     <p className="party-name">{party.partyName}</p>
                                     <p className="members">Members: {party.members}/{party.maximumMembers}</p>
                                 </div>
                                 <div className="button-container">
-                                    <button data-index={party.partyId} onClick={onJoinClicked}>Join this party</button>
+                                    <button 
+                                        data-index={party.partyId} 
+                                        onClick={onJoinClicked}
+                                        disabled={party.members >= party.maximumMembers}>
+                                            {party.members >= party.maximumMembers ? "Party Full" : "Join this party"}
+                                    </button>
                                 </div>
                             </div>
                         )

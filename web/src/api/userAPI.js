@@ -1,5 +1,6 @@
 async function register(email, password) {
-    const url = "http://localhost:5000/user"
+    const hostname = window.location.hostname
+    const url = "http://" + hostname + ":5000/user"
     const body = {
         email: email,
         password: password
@@ -21,7 +22,8 @@ async function register(email, password) {
 }
 
 async function login(email, password) {
-    const url = "http://localhost:5000/login"
+    const hostname = window.location.hostname
+    const url = "http://" + hostname + ":5000/login"
     const body = {
         email: email,
         password: password
