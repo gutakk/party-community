@@ -58,7 +58,6 @@ class PartyList extends Component {
     }
 }
 
-
 const mapStateToProps = state => ({
     partyList: state.partyList.parties,
     joinedMsg: state.partyList.joinedMsg,
