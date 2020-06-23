@@ -14,7 +14,8 @@ const PartyCreation = ({
     partyName, 
     maxMembers,
     createSuccessMsg,
-    createFailedMsg
+    createFailedMsg,
+    base64Img
 }) => {
     return (
         <div id="party-creation-container">
@@ -24,11 +25,12 @@ const PartyCreation = ({
                     <label>Party name</label>
                     <input type="text" onChange={onPartyNameChanged} value={partyName} required></input>
                     <label>Members</label>
-                    <input type="number" onChange={onMemberChanged} value={maxMembers} required></input>
+                    <input type="number" onChange={onMemberChanged} value={maxMembers} required min={1}></input>
                     <label className="file-container">
-                        <i class="fa fa-cloud-upload"></i> Upload image
+                        <i className="fa fa-cloud-upload"></i> Upload image
                         <input type="file" onChange={(e) => uploadImage(e.target.files[0]) }/>
                     </label>
+                    <img src={base64Img}/>
                     <br/>
                     <div className="button-container">
                         <button 
@@ -63,6 +65,7 @@ const mapStateToProps = state => ({
     maxMembers: state.partyCreation.maxMembers,
     createSuccessMsg: state.partyCreation.createSuccessMsg,
     createFailedMsg: state.partyCreation.createFailedMsg,
+    base64Img: state.partyCreation.base64Img
 })
   
 const mapDispatchToProps = dispatch => ({

@@ -14,7 +14,7 @@ class PartyList extends Component {
         return (
             <div id="party-list-container">
                 <div className="menu-container">
-                    <a href="/create-party"><i class="fa fa-plus-circle"></i> Create Party</a>
+                    <a href="/create-party"><i className="fa fa-plus-circle"></i> Create Party</a>
                 </div>
                 <div id="party-container">
                     {partyList.map(party => {

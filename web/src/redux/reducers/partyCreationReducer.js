@@ -32,7 +32,8 @@ export default (state = {
             return {
                 ...state,
                 createSuccessMsg: "",
-                createFailedMsg: ""
+                createFailedMsg: "",
+                base64Img: ""
             }
         case UPLOAD_FILE:
             return {

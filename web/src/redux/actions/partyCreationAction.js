@@ -57,6 +57,7 @@ export const closeModal = () => dispatch => {
 }
 
 export const uploadImage = (file) => dispatch => {
+    console.log(file)
     toBase64(file).then(result => {
         dispatch({
             type: UPLOAD_FILE,

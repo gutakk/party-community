@@ -51,7 +51,7 @@ const Register = ({
                         <input type="checkbox" onChange={onPromotionChanged}></input>
                         <label>I want to receive news and promotion from PartyHaan</label>
                     </div>
-                    <div class="error-msg-container">
+                    <div className="error-msg-container">
                         { !isPasswordMatch && <p className="register-error-msg">Password not match</p>}
                         { isEmailExist.isExist && <p className="register-error-msg">{isEmailExist.message}</p>}
                     </div>

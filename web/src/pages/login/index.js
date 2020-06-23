@@ -23,7 +23,7 @@ const Login = ({
                     <input type="email" onChange={onEmailChanged} value={email} required></input>
                     <label>Password</label>
                     <input type="password" onChange={onPasswordChanged} value={password} required></input>
-                    <div class="error-msg-container">
+                    <div className="error-msg-container">
                         {!isEmailExist.isExist && <p className="login-error-msg">{isEmailExist.message}</p>}
                     </div>
                     <div className="button-container">
