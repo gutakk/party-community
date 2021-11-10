@@ -1,5 +1,4 @@
-# SCB10X Software Engineer Test
-This project is created for apply job at SCB10X only.
+# Party Community
 In this project I'd used tech stack as following
 - React, Redux Thunk and SCSS for frontend
 - Python (Flask, Psycopg) for backend
